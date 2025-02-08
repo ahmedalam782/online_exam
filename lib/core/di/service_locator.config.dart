@@ -1,0 +1,47 @@
+// dart format width=80
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+// **************************************************************************
+// InjectableConfigGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint
+// coverage:ignore-file
+
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:dio/dio.dart' as _i361;
+import 'package:get_it/get_it.dart' as _i174;
+import 'package:injectable/injectable.dart' as _i526;
+import 'package:online_exam/core/di/register_modules.dart' as _i295;
+import 'package:online_exam/core/network/local/cache_helper.dart' as _i929;
+import 'package:online_exam/core/network/local/shared_preferences_cashed.dart'
+    as _i634;
+import 'package:online_exam/core/network/remote/api_consumer.dart' as _i955;
+import 'package:online_exam/core/network/remote/dio_consumer.dart' as _i858;
+import 'package:shared_preferences/shared_preferences.dart' as _i460;
+
+extension GetItInjectableX on _i174.GetIt {
+// initializes the registration of main-scope dependencies inside of GetIt
+  Future<_i174.GetIt> init({
+    String? environment,
+    _i526.EnvironmentFilter? environmentFilter,
+  }) async {
+    final gh = _i526.GetItHelper(
+      this,
+      environment,
+      environmentFilter,
+    );
+    final registerModule = _$RegisterModule();
+    await gh.factoryAsync<_i460.SharedPreferences>(
+      () => registerModule.instance,
+      preResolve: true,
+    );
+    gh.singleton<_i361.Dio>(() => registerModule.dio);
+    gh.singleton<_i955.ApiConsumer>(() => _i858.DioConsumer(gh<_i361.Dio>()));
+    gh.singleton<_i929.CacheHelper>(
+        () => _i634.SharedPreferencesCashed(gh<_i460.SharedPreferences>()));
+    return this;
+  }
+}
+
+class _$RegisterModule extends _i295.RegisterModule {}
