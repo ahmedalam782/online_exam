@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam/core/routes/routes.dart';
-import 'package:online_exam/feature/auth/presentation/view/screens/login_screen.dart';
-import 'package:online_exam/feature/auth/presentation/view/screens/register_screen.dart';
+import 'package:online_exam/presentation/view/auth/screens/login_screen.dart';
+import 'package:online_exam/presentation/view/auth/screens/register_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic>? getRoute(RouteSettings settings) {

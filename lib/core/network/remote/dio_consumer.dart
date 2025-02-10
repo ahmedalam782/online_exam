@@ -37,8 +37,8 @@ class DioConsumer implements ApiConsumer {
       );
       return response.data;
     } on DioException catch (e) {
-      throw Exception(e.message);
-    }
+      ServerException.handleDioException(e);
+     }
   }
 
   @override

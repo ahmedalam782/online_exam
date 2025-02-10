@@ -53,7 +53,6 @@ class CustomTextFormField extends StatefulWidget {
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   late bool hidden = widget.isObscured;
-  String? errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -83,14 +82,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       textInputAction: widget.nextFocus == null
           ? TextInputAction.done
           : TextInputAction.next,
-      validator: (value) {
-        if (widget.validation == null) {
-          setState(() => errorText = null);
-        } else {
-          setState(() => errorText = widget.validation!(value));
-        }
-        return errorText;
-      },
+      validator: widget.validation,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(Insets.s16),
         hintText: widget.hint,
