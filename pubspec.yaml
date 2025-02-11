@@ -34,10 +34,13 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^9.0.0
   flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.17
   fluttertoast: ^8.2.11
   get_it: ^8.0.3
   injectable: ^2.5.0
+  pinput: ^5.0.1
   shared_preferences: ^2.5.1
+  smart_auth: ^3.2.0
 
 dev_dependencies:
   flutter_lints: ^5.0.0
@@ -56,7 +59,7 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/
+    - assets/Images/
     - assets/svg/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

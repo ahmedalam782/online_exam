@@ -13,6 +13,7 @@ class CustomTextFormField extends StatefulWidget {
     this.nextFocus,
     this.label,
     this.hint,
+    this.autoValidateMode,
     this.isObscured = false,
     this.iconData,
     this.textInputType = TextInputType.text,
@@ -34,6 +35,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool isObscured;
   final String? label;
   final String? hint;
+  final AutovalidateMode? autoValidateMode;
   final TextInputType textInputType;
   final IconData? iconData;
   final TextStyle? hintTextStyle;
@@ -61,6 +63,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       controller: widget.controller,
       focusNode: widget.focusNode,
       readOnly: widget.readOnly,
+      autovalidateMode: widget.autoValidateMode,
       style: getBoldStyle(
         color: ColorManager.darkGray,
         context: context,
@@ -94,6 +97,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               fontFamily: AppConstants.roboto,
               fontSize: FontSize.s12,
             ),
+
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.isObscured
             ? Padding(

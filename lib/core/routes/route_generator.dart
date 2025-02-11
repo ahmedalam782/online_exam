@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam/core/routes/routes.dart';
+import 'package:online_exam/presentation/view/auth/screens/email_verification_screen.dart';
+import 'package:online_exam/presentation/view/auth/screens/forget_password_screen.dart';
 import 'package:online_exam/presentation/view/auth/screens/login_screen.dart';
 import 'package:online_exam/presentation/view/auth/screens/register_screen.dart';
+import 'package:online_exam/presentation/view/auth/screens/reset_password_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic>? getRoute(RouteSettings settings) {
@@ -9,7 +12,13 @@ class RouteGenerator {
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.register:
-        return MaterialPageRoute(builder: (_) => const RegisterScreen()); 
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+      case Routes.forgetPassword:
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+      case Routes.emailVerification:
+        return MaterialPageRoute(builder: (_) => const EmailVerificationScreen());
+      case Routes.resetPassword:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       default:
         return _undefinedRoute();
     }

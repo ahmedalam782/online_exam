@@ -14,3 +14,27 @@ class AppConstants {
   static const String roboto = 'Roboto';
   static const String inter = 'Inter';
 }
+
+class BaseLanguage{
+  static const String password = 'Password';
+  static const String forgetPassword = 'Forget password';
+  static const String forgetPasswordParagraph = 'Please enter your email associated to \n your account';
+  static const String email = 'Email';
+  static const String enterYourEmail = 'Enter Your Email';
+  static const String emailNotValid = 'This Email is not valid';
+  static const String continueWord = 'Continue';
+  static const String resetPasswordParagraph = 'Password must not be empty and must contain \n 6 characters with upper case letter and one \n number at least ';
+  static const String newPassword = 'New password';
+  static const String confirmPassword = 'Confirm password';
+  static const String enterYourPassword = 'Enter your password';
+  static const String emailVerification = 'Email verification';
+  static const String emailVerificationParagraph = 'Please enter your code that send to your \n email address';
+  static const String codeNotReceived = "Didn't receive code?";
+  static const String resend = 'Resend';
+  static const String invalidCode = 'Invalid code';
+
+
+
+
+
+}
