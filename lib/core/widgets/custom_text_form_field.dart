@@ -53,7 +53,7 @@ class CustomTextFormField extends StatefulWidget {
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   late bool hidden = widget.isObscured;
-
+  String? errorText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -82,14 +82,23 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       textInputAction: widget.nextFocus == null
           ? TextInputAction.done
           : TextInputAction.next,
-      validator: widget.validation,
+      validator: (value) {
+        if (widget.validation == null) {
+          setState(() => errorText = null);
+        } else {
+          setState(() => errorText = widget.validation!(value));
+        }
+        return errorText;
+      },
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(Insets.s16),
         hintText: widget.hint,
         labelText: widget.label,
         labelStyle: widget.labelTextStyle ??
             getRegularStyle(
-              color: ColorManager.mediumGray,
+              color: errorText != null
+                  ? ColorManager.red
+                  : ColorManager.mediumGray,
               context: context,
               fontFamily: AppConstants.roboto,
               fontSize: FontSize.s12,
@@ -121,7 +130,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               context: context,
               fontFamily: AppConstants.roboto,
               fontSize: FontSize.s14,
-
             ),
         border: OutlineInputBorder(
           borderSide: BorderSide(
@@ -142,7 +150,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             strokeAlign: BorderSide.strokeAlignInside,
-            color: ColorManager.blue,
+            color: errorText != null ? ColorManager.red : ColorManager.blue,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(4.r),
