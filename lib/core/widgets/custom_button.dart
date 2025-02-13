@@ -14,7 +14,10 @@ class CustomButton extends StatelessWidget {
   final BorderRadius? borderRadius;
   final void Function() onTap;
   final TextStyle? textStyle;
-
+  final double? elevation;
+  final Size? fixedSize;
+  final bool isStadiumBorder;
+  final EdgeInsetsGeometry? padding;
   const CustomButton({
     super.key,
     this.borderRadius,
@@ -25,46 +28,55 @@ class CustomButton extends StatelessWidget {
     this.suffixIcon,
     required this.label,
     required this.onTap,
+    this.elevation = 0,
+    this.fixedSize,
+    this.isStadiumBorder = false,
+    this.padding,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        elevation: elevation, // 👈 Add this
         padding: EdgeInsets.symmetric(
             horizontal: Insets.s14.w, vertical: Insets.s14.h),
-        decoration: BoxDecoration(
-          borderRadius: borderRadius ?? BorderRadius.circular(100.r),
-          color: backgroundColor ?? ColorManager.blue,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            prefixIcon ?? const SizedBox(),
-            prefixIcon != null
-                ? SizedBox(
-                    width: 8.w,
-                  )
-                : const SizedBox(),
-            Text(
-              label,
-              style: textStyle ??
-                  getMediumStyle(
-                    color: ColorManager.pureWhite,
-                    context: context,
-                    fontSize: FontSize.s16,
-                    fontFamily: AppConstants.roboto,
-                  ).copyWith(fontSize: FontSize.s16),
-            ),
-            suffixIcon != null
-                ? SizedBox(
-                    width: 8.w,
-                  )
-                : const SizedBox(),
-            suffixIcon ?? const SizedBox(),
-          ],
-        ),
+        shape: isStadiumBorder
+            ? const StadiumBorder()
+            : RoundedRectangleBorder(
+                borderRadius: borderRadius ?? BorderRadius.circular(100.r),
+              ),
+        backgroundColor: backgroundColor ?? ColorManager.blue,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        fixedSize: fixedSize ?? Size(double.infinity, 48.h),
+      ),
+      onPressed: onTap,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          prefixIcon ?? const SizedBox(),
+          prefixIcon != null
+              ? SizedBox(
+                  width: 8.w,
+                )
+              : const SizedBox(),
+          Text(
+            label,
+            style: textStyle ??
+                getMediumStyle(
+                  color: ColorManager.pureWhite,
+                  context: context,
+                  fontSize: FontSize.s16,
+                  fontFamily: AppConstants.roboto,
+                ).copyWith(fontSize: FontSize.s16),
+          ),
+          suffixIcon != null
+              ? SizedBox(
+                  width: 8.w,
+                )
+              : const SizedBox(),
+          suffixIcon ?? const SizedBox(),
+        ],
       ),
     );
   }
