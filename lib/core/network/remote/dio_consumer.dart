@@ -3,8 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam/core/network/errors/exception.dart';
 import 'package:online_exam/core/network/remote/api_consumer.dart';
 import 'package:online_exam/core/network/remote/api_interceptors.dart';
-
-@Singleton(as: ApiConsumer)
+@Injectable(as: ApiConsumer)
 class DioConsumer implements ApiConsumer {
   final Dio dio;
 

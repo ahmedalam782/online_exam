@@ -36,8 +36,8 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i361.Dio>(() => registerModule.dio);
-    gh.singleton<_i955.ApiConsumer>(() => _i858.DioConsumer(gh<_i361.Dio>()));
-    gh.singleton<_i929.CacheHelper>(
+    gh.factory<_i955.ApiConsumer>(() => _i858.DioConsumer(gh<_i361.Dio>()));
+    gh.factory<_i929.CacheHelper>(
         () => _i634.SharedPreferencesCashed(gh<_i460.SharedPreferences>()));
     return this;
   }

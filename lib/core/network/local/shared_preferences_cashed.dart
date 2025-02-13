@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'cache_helper.dart';
 
-@Singleton(as: CacheHelper)
+@Injectable(as: CacheHelper)
 class SharedPreferencesCashed implements CacheHelper {
   final SharedPreferences instance;
 
