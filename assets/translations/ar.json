@@ -1,0 +1,9 @@
+{
+    "fieldEmpty": "this field is required",
+    "emailValid": "enter valid email",
+    "confirmPasswordValid": "same password",
+    "userNameValid": "enter valid username",
+    "numberOnlyValid": "enter numbers only",
+    "phoneValid": "enter value must equal 10 digit",
+    "strongPasswordValid": "strong password please"
+}
