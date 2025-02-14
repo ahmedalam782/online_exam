@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:online_exam/presentation/view/auth/screens/sign_up_screen.dart';
 
@@ -30,8 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-
-                'Login',
+                "login".tr(),
                 style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -40,14 +40,14 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 40),
               CustomTextFormField(
                 controller: _emailController,
-                hint: 'Enter your email',
-                label: "email",
+                hint: "enterEmail".tr(),
+                label: "email".tr(),
                 validation: (email) {
                   if (email == null || email.isEmpty) {
-                    return 'Please enter your email';
+                    return "enterEmail".tr();
                   }
                   if (!email.contains('@')) {
-                    return 'Please enter a valid email';
+                    return "emailValid".tr();
                   }
                   return null;
                 },
@@ -55,11 +55,11 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 20),
               CustomTextFormField(
                 controller: _passwordController,
-                hint: 'Enter your password',
-                label: "password",
+                hint: "enterPassword".tr(),
+                label: "password".tr(),
                 validation: (password) {
                   if (password == null || password.isEmpty) {
-                    return 'Please enter your password';
+                    return  "enterPassword".tr();
                   }
                   return null;
                 },
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         },
                       ),
-                      Text('Remember me'),
+                      Text("Remember me".tr()),
                     ],
                   ),
                   TextButton(
@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     },
                     child: Text(
-                      'Forget password?',
+                      "forgetPassword".tr(),
                       style: TextStyle(color: ColorManager.blue),
                     ),
                   ),
@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
                   },
                   child: Text(
-                    'Login',
+                    "login".tr(),
                     style:
                         TextStyle(fontSize: 18, color: ColorManager.pureWhite),
                   ),
@@ -128,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't have an account?"),
+                  Text("don'tHaveAccount".tr()),
                   TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -137,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     },
                     child: Text(
-                      'Sign up',
+                      "signUp".tr(),
                       style: TextStyle(color: ColorManager.blue),
                     ),
                   ),

@@ -5,5 +5,19 @@
     "userNameValid": "enter valid username",
     "numberOnlyValid": "enter numbers only",
     "phoneValid": "enter value must equal 10 digit",
-    "strongPasswordValid":"strong password please"
+    "strongPasswordValid":"strong password please",
+    "enterEmail":" 'Enter your email'",
+    "email": "Email",
+    "login": "Login",
+    "enterPassword": "Enter your password",
+    "password": "password",
+    "rememberMe": "Remember me",
+    "forgetPassword": "Forget password?",
+    "don'tHaveAccount": "Don't have an account?",
+    "signUp": "Sign up"
+
+
+
+
+
 }
