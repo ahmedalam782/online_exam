@@ -17,14 +17,14 @@ class Validator {
   }
 
   static String? validatePassword(String? val) {
-    final RegExp passwordRegex = RegExp(r'^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$');
+    // final RegExp passwordRegex = RegExp(r'^(?=.*[a-zA-Z])(?=.*[0-9])');
     if (val == null) {
       return 'this field is required';
     } else if (val.isEmpty) {
       return 'this field is required';
     }
-    else if (!passwordRegex.hasMatch(val)) {
-      return 'The password must contain : \n 6 characters with uppercase letter \n at least one number';
+    else if (val.length < 8 ) {
+      return 'strong password please';
     }
     else {
       return null;
@@ -35,7 +35,7 @@ class Validator {
     if (val == null || val.isEmpty) {
       return 'this field is required';
     } else if (val != password) {
-      return "password doesn't match password";
+      return 'same password';
     } else {
       return null;
     }

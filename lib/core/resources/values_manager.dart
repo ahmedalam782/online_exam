@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Insets {
   static const double s2 = 2.0;
   static const double s4 = 4.0;
@@ -9,10 +11,14 @@ class Insets {
   static const double s24 = 24.0;
 }
 
-class AppConstants {
+abstract class AppConstants {
   static const String sfPro = 'SF Pro';
   static const String roboto = 'Roboto';
   static const String inter = 'Inter';
+  static const String pathTranslation = "assets/translations";
+  static const Locale arabicLocale = Locale("ar", "EG");
+  static const Locale englishLocale = Locale("en", "US");
+  static const List<Locale> supportedLocales = [englishLocale, arabicLocale];
 }
 
 class BaseLanguage{
