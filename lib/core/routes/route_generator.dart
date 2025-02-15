@@ -9,7 +9,7 @@ class RouteGenerator {
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.register:
-        return MaterialPageRoute(builder: (_) => const RegisterScreen()); 
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
       default:
         return _undefinedRoute();
     }

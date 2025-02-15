@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const fieldEmpty = 'fieldEmpty';
   static const emailValid = 'emailValid';
   static const confirmPasswordValid = 'confirmPasswordValid';
@@ -10,5 +10,4 @@ abstract class  LocaleKeys {
   static const numberOnlyValid = 'numberOnlyValid';
   static const phoneValid = 'phoneValid';
   static const strongPasswordValid = 'strongPasswordValid';
-
 }

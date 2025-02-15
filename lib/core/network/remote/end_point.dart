@@ -1,7 +1,7 @@
 class EndPoint {
   static const String baseUrl = 'https://exam.elevateegy.com/api/v1/';
-  static const String signIn = 'auth/auth/signin';
-  static const String register = 'auth/auth/signup';
+  static const String signIn = 'auth/signin';
+  static const String register = 'auth/signup';
   static const String changePassword = "auth/changePassword";
   static const String deleteMe = "auth/deleteMe";
   static const String logout = "auth/logout";
@@ -24,4 +24,5 @@ class ApiKey {
   static const String subject = 'subject';
   static const String exam = 'exam';
   static const String authorization = 'Authorization';
+  static const String token = "token";
 }

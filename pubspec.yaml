@@ -31,6 +31,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.8.0+1
   easy_localization: ^3.0.7+1
+  equatable: ^2.0.7
   flutter:
     sdk: flutter
   flutter_bloc: ^9.0.0
@@ -38,15 +39,17 @@ dependencies:
   fluttertoast: ^8.2.11
   get_it: ^8.0.3
   injectable: ^2.5.0
+  internet_connection_checker: ^3.0.1
+  pretty_dio_logger: ^1.4.0
   shared_preferences: ^2.5.1
 
 dev_dependencies:
   build_runner: ^2.4.6
+  easy_localization_generator: ^0.3.3
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
   injectable_generator: ^2.6.2
-  easy_localization_generator: ^0.3.3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.

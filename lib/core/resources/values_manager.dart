@@ -19,4 +19,8 @@ abstract class AppConstants {
   static const Locale arabicLocale = Locale("ar", "EG");
   static const Locale englishLocale = Locale("en", "US");
   static const List<Locale> supportedLocales = [englishLocale, arabicLocale];
+  static const String serverFailureMessage = 'Please try again later .';
+  static const String emptyCacheFailureMessage = 'No Data';
+  static const String offlineFailureMessage =
+      'Please Check your Internet Connection';
 }

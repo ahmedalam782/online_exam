@@ -17,6 +17,6 @@ class AppTheme {
             fontSize: FontSize.s16,
             context: context,
           ),
-        ),   
+        ),
       );
 }
