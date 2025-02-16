@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_exam/core/resources/color_manager.dart';
 import 'package:online_exam/core/resources/font_manager.dart';
 import 'package:online_exam/core/routes/routes.dart';
+import 'package:online_exam/generated/locale_keys.g.dart';
 import 'package:pinput/pinput.dart';
 import '../../../../core/resources/values_manager.dart';
 
@@ -43,7 +45,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text(BaseLanguage.password)),
+      appBar: AppBar(title: Text(LocaleKeys.password.tr())),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -52,14 +54,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                BaseLanguage.emailVerification,
+                LocaleKeys.emailVerification.tr(),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               SizedBox(
                 height: 18.h,
               ),
               Text(
-                BaseLanguage.emailVerificationParagraph,
+                LocaleKeys.emailVerificationParagraph.tr(),
                 style: Theme.of(context).textTheme.titleSmall,
                 textAlign: TextAlign.center,
               ),
@@ -100,7 +102,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       width: 5.w,
                     ),
                     Text(
-                      BaseLanguage.invalidCode,
+                      LocaleKeys.invalidCode.tr(),
                       style: TextStyle(color: ColorManager.red),
                     )
                   ],
@@ -109,7 +111,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(BaseLanguage.codeNotReceived,
+                  Text(LocaleKeys.codeNotReceived.tr(),
                       style: Theme.of(context)
                           .textTheme
                           .titleSmall!
@@ -122,7 +124,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       // handle the resend
                     },
                     child: Text(
-                      BaseLanguage.resend,
+                      LocaleKeys.resend.tr(),
                       style: TextStyle(
                         color: ColorManager.blue,
                         fontSize: FontSize.s16,

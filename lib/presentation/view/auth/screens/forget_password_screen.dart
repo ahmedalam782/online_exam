@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/core/resources/color_manager.dart';
-import 'package:online_exam/core/resources/values_manager.dart';
 import 'package:online_exam/core/utils/validator.dart';
 import 'package:online_exam/core/widgets/custom_button.dart';
 import 'package:online_exam/core/widgets/custom_text_form_field.dart';
+import 'package:online_exam/generated/locale_keys.g.dart';
 import '../../../../core/routes/routes.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -41,21 +42,21 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(title: Text(BaseLanguage.password)),
+      appBar: AppBar(title: Text(LocaleKeys.password.tr())),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              BaseLanguage.forgetPassword,
+              LocaleKeys.forgetPassword.tr(),
               style: Theme.of(context).textTheme.titleMedium,
             ),
             SizedBox(
               height: 18.h,
             ),
             Text(
-              BaseLanguage.forgetPasswordParagraph,
+              LocaleKeys.forgetPasswordParagraph.tr(),
               style: Theme.of(context).textTheme.titleSmall,
               textAlign: TextAlign.center,
             ),
@@ -66,9 +67,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 key: _formKey,
                 child: CustomTextFormField(
                   controller: _emailController,
-                  label: BaseLanguage.email,
+                  label: LocaleKeys.email.tr(),
                   labelTextStyle: Theme.of(context).textTheme.titleSmall,
-                  hint: BaseLanguage.enterYourEmail,
+                  hint: LocaleKeys.enterYourEmail.tr(),
                   hintTextStyle: Theme.of(context).textTheme.titleSmall,
                   validation: (val) => Validator.validateEmail(val),
                   autoValidateMode: AutovalidateMode.onUserInteraction,
@@ -77,7 +78,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               height: 45.h,
             ),
             CustomButton(
-                label: BaseLanguage.continueWord,
+                label: LocaleKeys.continueWord.tr(),
                 backgroundColor:
                     isValid ? ColorManager.blue : ColorManager.softGray,
                 onTap: () {

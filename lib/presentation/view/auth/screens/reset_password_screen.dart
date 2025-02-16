@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam/generated/locale_keys.g.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/routes/routes.dart';
@@ -49,7 +51,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(title: Text(BaseLanguage.password)),
+      appBar: AppBar(title: Text(LocaleKeys.password.tr())),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -57,14 +59,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                BaseLanguage.forgetPassword,
+                LocaleKeys.forgetPassword.tr(),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               SizedBox(
                 height: 18.h,
               ),
               Text(
-                BaseLanguage.resetPasswordParagraph,
+                LocaleKeys.resetPasswordParagraph.tr(),
                 style: Theme.of(context).textTheme.titleSmall,
                 textAlign: TextAlign.center,
               ),
@@ -77,11 +79,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     children: [
                       CustomTextFormField(
                         controller: _passwordController,
-                        label: BaseLanguage.newPassword,
+                        label: LocaleKeys.newPassword.tr(),
                         labelTextStyle: Theme.of(context).textTheme.titleSmall,
-                        hint: BaseLanguage.enterYourPassword,
+                        hint: LocaleKeys.enterYourPassword.tr(),
                         hintTextStyle: Theme.of(context).textTheme.titleSmall,
-                        validation: (val) => Validator.validatePassword(val),
+                        validation: Validator.validatePassword,
                         autoValidateMode: AutovalidateMode.onUserInteraction,
                       ),
                   SizedBox(
@@ -89,9 +91,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   ),
                       CustomTextFormField(
                         controller: _confirmPasswordController,
-                        label: BaseLanguage.confirmPassword,
+                        label: LocaleKeys.confirmPassword.tr(),
                         labelTextStyle: Theme.of(context).textTheme.titleSmall,
-                        hint: BaseLanguage.confirmPassword,
+                        hint: LocaleKeys.confirmPassword.tr(),
                         hintTextStyle: Theme.of(context).textTheme.titleSmall,
                         validation: (val) => Validator.validateConfirmPassword(
                             val, _passwordController.text),
@@ -103,15 +105,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 height: 45.h,
               ),
               CustomButton(
-                  label: BaseLanguage.continueWord,
+                  label: LocaleKeys.continueWord.tr(),
                   backgroundColor:
                       isValid ? ColorManager.blue : ColorManager.softGray,
                   onTap: () {
-                    setState(() {
                       isValid
                           ? Navigator.pushNamed(context, Routes.login)
                           : null;
-                    });
                   })
             ],
           ),

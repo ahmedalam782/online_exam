@@ -36,11 +36,14 @@ class OnlineExam extends StatelessWidget {
       minTextAdapt: false,
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         title: 'Online Exam',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme(context),
         onGenerateRoute: RouteGenerator.getRoute,
-        initialRoute: Routes.login,
+        initialRoute: Routes.resetPassword,
       ),
     );
   }
