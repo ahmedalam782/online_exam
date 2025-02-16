@@ -9,6 +9,7 @@ import 'package:online_exam/core/resources/values_manager.dart';
 import 'package:online_exam/core/routes/route_generator.dart';
 import 'package:online_exam/core/routes/routes.dart';
 import 'package:online_exam/core/utils/bloc_observer.dart';
+import 'package:online_exam/presentation/view_model/cubit/auth/auth_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,20 +32,22 @@ class OnlineExam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: Size(375, 812),
-      minTextAdapt: false,
-      splitScreenMode: true,
-      builder: (context, child) => MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        title: 'Online Exam',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.lightTheme(context),
-        onGenerateRoute: RouteGenerator.getRoute,
-        initialRoute: Routes.forgetPassword,
-      ),
-    );
+    return BlocProvider(
+        create: (context) => serviceLocator<AuthCubit>(),
+        child: ScreenUtilInit(
+          designSize: Size(375, 812),
+          minTextAdapt: false,
+          splitScreenMode: true,
+          builder: (context, child) => MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            title: 'Online Exam',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.lightTheme(context),
+            onGenerateRoute: RouteGenerator.getRoute,
+            initialRoute: Routes.forgetPassword,
+          ),
+        ));
   }
 }

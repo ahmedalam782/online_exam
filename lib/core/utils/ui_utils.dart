@@ -81,6 +81,6 @@ class UiUtils {
         backgroundColor: ColorManager.lightGray,
         textColor: ColorManager.darkGray,
         fontSize: FontSize.s16,
-        fontAsset: AppConstants.inter,
+        // fontAsset: AppConstants.inter,
       );
 }

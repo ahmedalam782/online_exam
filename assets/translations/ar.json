@@ -6,6 +6,8 @@
     "numberOnlyValid": "enter numbers only",
     "phoneValid": "enter value must equal 10 digit",
     "strongPasswordValid": "strong password please",
+    "passwordNotMatch":"password doesn't match password",
+    "weakPassword": "The password must contain : \n 6 characters with uppercase letter \n at least one number",
     "password": "Password",
     "forgetPassword": "Forget password",
     "forgetPasswordParagraph": "Please enter your email associated to \\n your account",
