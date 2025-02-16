@@ -11,9 +11,7 @@ class SignUpDataSourcesImpl implements SignUpDataSources {
   const SignUpDataSourcesImpl(this._apiConsumer);
   @override
   Future<SignUpResponse> signUp(SignUpRequest signUpRequest) async {
-    final response = await _apiConsumer.post(
-      EndPoint.register,
-      data: signUpRequest.toJson(),
+    final response = await _apiConsumer.post(EndPoint.register, data: signUpRequest.toJson(),
     );
     return SignUpResponse.fromJson(response);
   }

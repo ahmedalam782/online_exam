@@ -10,21 +10,23 @@ import 'package:online_exam/core/routes/route_generator.dart';
 import 'package:online_exam/core/routes/routes.dart';
 import 'package:online_exam/core/utils/bloc_observer.dart';
 import 'package:online_exam/presentation/view_model/cubit/auth/auth_cubit.dart';
+import 'package:online_exam/presentation/view_model/cubit/auth/sign_in/sign_In_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   Bloc.observer = MyBlocObserver();
   await EasyLocalization.ensureInitialized();
   await configureDependencies();
-  runApp(EasyLocalization(
-    supportedLocales: AppConstants.supportedLocales,
-    fallbackLocale: AppConstants.englishLocale,
-    path: AppConstants.pathTranslation,
-    child: const OnlineExam(),
-  ));
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: AppConstants.supportedLocales,
+      fallbackLocale: AppConstants.englishLocale,
+      path: AppConstants.pathTranslation,
+      child: const OnlineExam(),
+    ),
+  );
 }
 
 class OnlineExam extends StatelessWidget {
@@ -32,8 +34,11 @@ class OnlineExam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => serviceLocator<AuthCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => serviceLocator<AuthCubit>()),
+        BlocProvider(create: (context) => serviceLocator<SignInCubit>()),
+      ],
       child: ScreenUtilInit(
         designSize: Size(375, 812),
         minTextAdapt: false,

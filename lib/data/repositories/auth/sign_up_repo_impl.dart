@@ -16,8 +16,7 @@ class SignUpRepoImpl implements SignUpRepo {
   final NetworkInfo networkInfo ;
   const SignUpRepoImpl(this._signUpDataSources, this._authLocalDataSources, this.networkInfo);
   @override
-  Future<Result<SignUpResponseEntity>> signUp(
-      SignUpRequestEntity signUpRequestEntity) {
+  Future<Result<SignUpResponseEntity>> signUp(SignUpRequestEntity signUpRequestEntity) {
     return executeApi<SignUpResponseEntity>(() async {
       final result =
           await _signUpDataSources.signUp(signUpRequestEntity.toModel());

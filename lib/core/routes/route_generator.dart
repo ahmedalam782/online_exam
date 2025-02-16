@@ -3,6 +3,8 @@ import 'package:online_exam/core/routes/routes.dart';
 import 'package:online_exam/presentation/view/auth/screens/login_screen.dart';
 import 'package:online_exam/presentation/view/auth/screens/register_screen.dart';
 
+import '../../presentation/view/home/screens/home_screen.dart';
+
 class RouteGenerator {
   static Route<dynamic>? getRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -10,6 +12,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.register:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
+      case Routes.home:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:
         return _undefinedRoute();
     }

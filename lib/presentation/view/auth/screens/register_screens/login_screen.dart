@@ -11,20 +11,19 @@ import '../../../../../domain/common/exceptions/server_error.dart';
 import '../../../../../domain/entities/auth/sign_in/sign_in_request_entity.dart';
 
 import '../../../../../domain/use_cases/auth/sign_in.dart';
-import '../../../handleErrors/handles_errors.dart';
-import '../../../view_model/cubit/auth/sign_in/sign_In_cubit.dart';
-import '../../../view_model/cubit/auth/sign_in/sign_In_states.dart';
-import '../../../view_model/cubit/auth/sign_in/sign_in_intent.dart';
+import '../../../../handleErrors/handles_errors.dart';
+import '../../../../view_model/cubit/auth/sign_in/sign_In_cubit.dart';
+import '../../../../view_model/cubit/auth/sign_in/sign_In_states.dart';
+import '../../../../view_model/cubit/auth/sign_in/sign_in_intent.dart';
 
-
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -42,9 +41,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
               UiUtils.showLoadingDialog(context);
             } else if (state is SignInSuccessState) {
               UiUtils.hideLoadingDialog(context);
+
               print("Token: ${state.signInResponseEntity.token}");
+
               Navigator.pushReplacementNamed(context, Routes.home);
-            } else if (state is SignInErrorState) {
+            }
+            else if (state is SignInErrorState) {
               UiUtils.hideLoadingDialog(context);
               if (state.exception is NetworkError) {
                 UiUtils.showConnectionDialog(context);
@@ -137,10 +139,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          final cubit = context.read<SignInCubit>();
                           setState(() {
                             ispress = true;
                           });
+                          final cubit = BlocProvider.of<SignInCubit>(context);
                           cubit.doIntent(
                             SignInIntent(
                               signInRequestEntity: SignInRequestEntity(
@@ -151,6 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           );
                         }
                       },
+
                       child: Text(
                         "login".tr(),
                         style: TextStyle(

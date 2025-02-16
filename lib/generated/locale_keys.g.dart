@@ -10,4 +10,5 @@ abstract class LocaleKeys {
   static const numberOnlyValid = 'numberOnlyValid';
   static const phoneValid = 'phoneValid';
   static const strongPasswordValid = 'strongPasswordValid';
+
 }

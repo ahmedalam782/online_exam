@@ -6,10 +6,16 @@ import 'package:online_exam/domain/use_cases/auth/sign_up.dart';
 import 'package:online_exam/presentation/view_model/cubit/auth/auth_intent.dart';
 import 'package:online_exam/presentation/view_model/cubit/auth/auth_states.dart';
 
+import '../../../../domain/entities/auth/sign_in/sign_in_request_entity.dart';
+import '../../../../domain/use_cases/auth/sign_in.dart';
+
 @injectable
 class AuthCubit extends Cubit<AuthStates> {
-  AuthCubit(this._signUpCall) : super(AuthInitialState());
+  AuthCubit(
+    this._signUpCall,
+  ) : super(AuthInitialState());
   final SignUp _signUpCall;
+
   static AuthCubit get(context) => BlocProvider.of(context);
 
   void _signUp(SignUpRequestEntity signUpRequestEntity) async {
@@ -34,9 +40,7 @@ class AuthCubit extends Cubit<AuthStates> {
   void doIntent(AuthIntent authIntent) {
     switch (authIntent) {
       case SignUpIntent():
-        {
-          _signUp(authIntent.signUpRequestEntity);
-        }
+        _signUp(authIntent.signUpRequestEntity);
     }
   }
 }

@@ -5,5 +5,21 @@
     "userNameValid": "enter valid username",
     "numberOnlyValid": "enter numbers only",
     "phoneValid": "enter value must equal 10 digit",
-    "strongPasswordValid":"strong password please"
+    "strongPasswordValid":"strong password please",
+    "password": "Password",
+    "forgetPassword": "Forget password",
+    "forgetPasswordParagraph": "Please enter your email associated to \n your account",
+    "email": "Email",
+    "enterYourEmail": "Enter Your Email",
+    "emailNotValid": "emailNotValid",
+    "continueWord": "Continue",
+    "resetPasswordParagraph": "Password must not be empty and must contain \n 6 characters with upper case letter and one \n number at least ",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "enterYourPassword": "Enter your password",
+    "emailVerification": "Email verification",
+    "emailVerificationParagraph": "Please enter your code that send to your \n email address",
+    "codeNotReceived": "Didn't receive code?",
+    "resend": "Resend",
+    "invalidCode": "Invalid code"
 }
