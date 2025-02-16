@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:online_exam/core/network/errors/error_model.dart';
 import 'package:online_exam/core/network/network_info.dart';
@@ -43,7 +42,7 @@ Future<Result<T>> executeApi<T>(
     } on Exception catch (ex) {
       return Error(ex);
     }
-  } on NetworkError catch (e) {
+  } on NetworkError catch (ex) {
     return Error(NetworkError());
   }
 }
