@@ -18,7 +18,7 @@ class ForgetPasswordScreen extends StatefulWidget {
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
-  bool isValid = false;
+  final ValueNotifier<bool> isValid = ValueNotifier(false);
   @override
   void initState() {
     super.initState();
@@ -26,9 +26,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   }
 
   void _validateEmail() {
-    setState(() {
-      isValid = Validator.validateEmail(_emailController.text) == null;
-    });
+    isValid.value = Validator.validateEmail(_emailController.text) == null;
   }
 
   @override
@@ -77,16 +75,17 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             SizedBox(
               height: 45.h,
             ),
-            CustomButton(
-                label: LocaleKeys.continueWord.tr(),
-                backgroundColor:
-                    isValid ? ColorManager.blue : ColorManager.softGray,
-                onTap: () {
-                  setState(() {
-                    isValid
-                        ? Navigator.pushNamed(context, Routes.emailVerification )
-                        : null;
-                  });
+            ValueListenableBuilder(
+                valueListenable: isValid,
+                builder: (context, value, child) {
+                  return CustomButton(
+                      label: LocaleKeys.continueWord.tr(),
+                      backgroundColor:
+                          value ? ColorManager.blue : ColorManager.softGray,
+                      onTap: value
+                          ? () => Navigator.pushNamed(
+                              context, Routes.emailVerification)
+                          : () {});
                 })
           ],
         ),

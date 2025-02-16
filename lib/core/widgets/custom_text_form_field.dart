@@ -85,14 +85,15 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       textInputAction: widget.nextFocus == null
           ? TextInputAction.done
           : TextInputAction.next,
-      validator: (value) {
-        if (widget.validation == null) {
-          setState(() => errorText = null);
-        } else {
-          setState(() => errorText = widget.validation!(value));
-        }
-        return errorText;
-      },
+       validator: widget.validation,
+      // (value) {
+      //   if (widget.validation == null) {
+      //     setState(() => errorText = null);
+      //   } else {
+      //     setState(() => errorText = widget.validation!(value));
+      //   }
+      //   return errorText;
+      // },
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(Insets.s16),
         hintText: widget.hint,

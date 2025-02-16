@@ -43,7 +43,7 @@ class OnlineExam extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme(context),
         onGenerateRoute: RouteGenerator.getRoute,
-        initialRoute: Routes.resetPassword,
+        initialRoute: Routes.forgetPassword,
       ),
     );
   }

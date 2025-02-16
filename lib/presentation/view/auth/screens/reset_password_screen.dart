@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/generated/locale_keys.g.dart';
 import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/values_manager.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/utils/validator.dart';
 import '../../../../core/widgets/custom_button.dart';
@@ -19,31 +18,30 @@ class ResetPasswordScreen extends StatefulWidget {
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-  bool isValid = false;
+  final TextEditingController _confirmPasswordController = TextEditingController();
+  final ValueNotifier<bool> isValid = ValueNotifier(false);
+
   @override
   void initState() {
     super.initState();
     _passwordController.addListener(_validatePasswords);
     _confirmPasswordController.addListener(_validatePasswords);
-
   }
 
   void _validatePasswords() {
-    setState(() {
-      bool passwordValid = Validator.validatePassword(_passwordController.text) == null;
-      bool confirmPasswordValid = Validator.validateConfirmPassword(_confirmPasswordController.text, _passwordController.text) == null;
-      isValid = passwordValid && confirmPasswordValid;
-    });
+    bool passwordValid =
+        Validator.validatePassword(_passwordController.text) == null;
+    bool confirmPasswordValid = Validator.validateConfirmPassword(
+            _confirmPasswordController.text, _passwordController.text) ==
+        null;
+    isValid.value = passwordValid && confirmPasswordValid;
   }
 
   @override
   void dispose() {
-    _passwordController.removeListener(_validatePasswords);
-    _confirmPasswordController.removeListener(_validatePasswords);
     _passwordController.dispose();
     _confirmPasswordController.dispose();
+    isValid.dispose();
     super.dispose();
   }
 
@@ -75,6 +73,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               ),
               Form(
                   key: _formKey,
+                  onChanged: _validatePasswords,
                   child: Column(
                     children: [
                       CustomTextFormField(
@@ -83,12 +82,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         labelTextStyle: Theme.of(context).textTheme.titleSmall,
                         hint: LocaleKeys.enterYourPassword.tr(),
                         hintTextStyle: Theme.of(context).textTheme.titleSmall,
-                        validation: Validator.validatePassword,
+                        validation: (val) => Validator.validatePassword(val),
                         autoValidateMode: AutovalidateMode.onUserInteraction,
                       ),
-                  SizedBox(
-                    height: 30.h ,
-                  ),
+                      SizedBox(
+                        height: 30.h,
+                      ),
                       CustomTextFormField(
                         controller: _confirmPasswordController,
                         label: LocaleKeys.confirmPassword.tr(),
@@ -104,15 +103,18 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               SizedBox(
                 height: 45.h,
               ),
-              CustomButton(
-                  label: LocaleKeys.continueWord.tr(),
-                  backgroundColor:
-                      isValid ? ColorManager.blue : ColorManager.softGray,
-                  onTap: () {
-                      isValid
-                          ? Navigator.pushNamed(context, Routes.login)
-                          : null;
-                  })
+              ValueListenableBuilder(
+                valueListenable: isValid,
+                builder: (context, value, child) {
+                  return CustomButton(
+                      label: LocaleKeys.continueWord.tr(),
+                      backgroundColor:
+                          value ? ColorManager.blue : ColorManager.softGray,
+                      onTap: value
+                          ? () => Navigator.pushNamed(context, Routes.login)
+                          : () {});
+                },
+              )
             ],
           ),
         ),
