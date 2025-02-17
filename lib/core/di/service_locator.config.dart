@@ -15,7 +15,7 @@ import 'package:online_exam/core/di/register_modules.dart' as _i295;
 import 'package:online_exam/core/network/local/cache_helper.dart' as _i929;
 import 'package:online_exam/core/network/local/shared_preferences_cashed.dart'
     as _i634;
-import 'package:online_exam/core/network/remote/api_consumer.dart' as _i955;
+import 'package:online_exam/core/network/remote/api_interceptors.dart' as _i74;
 import 'package:online_exam/core/network/remote/dio_consumer.dart' as _i858;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
@@ -36,9 +36,14 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i361.Dio>(() => registerModule.dio);
-    gh.factory<_i955.ApiConsumer>(() => _i858.DioConsumer(gh<_i361.Dio>()));
+    gh.singleton<_i74.ApiInterceptors>(
+        () => _i74.ApiInterceptors(gh<_i460.SharedPreferences>()));
     gh.factory<_i929.CacheHelper>(
         () => _i634.SharedPreferencesCashed(gh<_i460.SharedPreferences>()));
+    gh.singleton<_i858.DioConsumer>(() => _i858.DioConsumer(
+          gh<_i361.Dio>(),
+          gh<_i460.SharedPreferences>(),
+        ));
     return this;
   }
 }

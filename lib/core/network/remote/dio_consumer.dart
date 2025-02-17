@@ -1,136 +1,29 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam/core/network/errors/exception.dart';
-import 'package:online_exam/core/network/remote/api_consumer.dart';
 import 'package:online_exam/core/network/remote/api_interceptors.dart';
-@Injectable(as: ApiConsumer)
-class DioConsumer implements ApiConsumer {
-  final Dio dio;
+import 'package:shared_preferences/shared_preferences.dart';
 
+@singleton
+class DioConsumer {
+  final Dio dio;
+  final SharedPreferences sharedPreferences;
   DioConsumer(
     this.dio,
+    this.sharedPreferences,
   ) {
     dio.interceptors.add(
-      ApiInterceptors(),
+      ApiInterceptors(
+        sharedPreferences,
+      ),
     ); // For add token in request header of interceptors
-    dio.interceptors.add(LogInterceptor(
-      request: true,
-      responseBody: true,
-      requestBody: true,
-      requestHeader: true,
-      error: true,
-    )); // For print logs of interceptors in console
-  }
-
-  @override
-  Future<dynamic> delete(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-  }) async {
-    try {
-      final response = await dio.delete(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-      );
-      return response.data;
-    } on DioException catch (e) {
-      ServerException.handleDioException(e);
-     }
-  }
-
-  @override
-  Future<dynamic> get(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-  }) async {
-    try {
-      final response = await dio.get(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-      );
-      return response.data;
-    } on DioException catch (e) {
-      ServerException.handleDioException(e);
-    }
-  }
-
-  @override
-  Future<dynamic> post(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFormData = false,
-  }) async {
-    try {
-      final response = await dio.post(
-        path,
-        data: isFormData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-      );
-      return response.data;
-    } on DioException catch (e) {
-      ServerException.handleDioException(e);
-    }
-  }
-
-  @override
-  Future<dynamic> put(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFormData = false,
-  }) async {
-    try {
-      final response = await dio.put(
-        path,
-        data: isFormData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-      );
-      return response.data;
-    } on DioException catch (e) {
-      ServerException.handleDioException(e);
-    }
-  }
-
-  @override
-  Future<dynamic> patch(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFormData = false,
-  }) async {
-    try {
-      final response = await dio.patch(
-        path,
-        data: isFormData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-      );
-      return response.data;
-    } on DioException catch (e) {
-      ServerException.handleDioException(e);
-    }
-  }
-
-  @override
-  Future<dynamic> request(String path,
-      {data,
-      Map<String, dynamic>? queryParameters,
-      bool isFormData = false,
-      Options? options}) async {
-    try {
-      final response = await dio.request(
-        path,
-        data: isFormData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-        options: options,
-      );
-      return response.data;
-    } on DioException catch (e) {
-      ServerException.handleDioException(e);
-    }
+    dio.interceptors.add(
+      LogInterceptor(
+        request: true,
+        responseBody: true,
+        requestBody: true,
+        requestHeader: true,
+        error: true,
+      ),
+    ); // For print logs of interceptors in console
   }
 }

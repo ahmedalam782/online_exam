@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
-
+import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+@singleton
 class ApiInterceptors extends Interceptor {
-  // final AuthLocalDataSources _authLocalDataSources;
-  const ApiInterceptors(
-      // this._authLocalDataSources,
+  final SharedPreferences instance;
+  const ApiInterceptors(this.instance
       );
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    // String? token = _authLocalDataSources.getAccessToken();
-    // options.headers[ApiKey.authorization] = 'Bearer ${token ?? ''}';
+   
     super.onRequest(options, handler);
   }
 }
